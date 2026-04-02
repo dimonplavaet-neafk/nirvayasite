@@ -60,7 +60,7 @@ export function Portfolio() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="h-px bg-gold hidden md:block"
             />
-            <h2 className="font-heading text-3xl md:text-5xl uppercase tracking-[0.15em] text-center">
+            <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em] text-center">
               Избранные работы
             </h2>
             <motion.div

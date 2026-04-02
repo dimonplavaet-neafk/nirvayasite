@@ -60,7 +60,7 @@ export function Services() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="h-px bg-gold hidden md:block"
             />
-            <h2 className="font-heading text-3xl md:text-5xl uppercase tracking-[0.15em]">
+            <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em]">
               Что мы создаём
             </h2>
             <motion.div
@@ -75,13 +75,15 @@ export function Services() {
             Каждый проект — это кинематографичная история с характером и стилем
           </p>
           
-          {/* Pulsing teal line below subtitle */}
+          {/* Gold gradient breathing line below subtitle */}
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="w-32 h-px mx-auto animate-pulse-line"
-            style={{ backgroundColor: 'var(--teal)' }}
+            className="w-[120px] h-px mx-auto animate-breathe-gold-line"
+            style={{ 
+              background: 'linear-gradient(to right, transparent, #C8943E, transparent)'
+            }}
           />
         </motion.div>
 

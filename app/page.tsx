@@ -8,7 +8,12 @@ import { Team } from "@/components/team"
 import { Contacts } from "@/components/contacts"
 import { Footer } from "@/components/footer"
 import { CursorGlow } from "@/components/cursor-glow"
-import { TriangleDivider } from "@/components/triangle-divider"
+import { 
+  TriangleDotsDivider, 
+  LotusDivider, 
+  MandalaDivider, 
+  VerticalLineDivider 
+} from "@/components/triangle-divider"
 
 export default function Home() {
   return (
@@ -17,15 +22,15 @@ export default function Home() {
       <Navigation />
       <Hero />
       <Marquee />
-      <TriangleDivider />
+      <TriangleDotsDivider />
       <Services />
-      <TriangleDivider />
+      <LotusDivider />
       <Portfolio />
-      <TriangleDivider />
+      <MandalaDivider />
       <About />
-      <TriangleDivider />
+      <VerticalLineDivider />
       <Team />
-      <TriangleDivider />
+      <VerticalLineDivider />
       <Contacts />
       <Footer />
     </main>

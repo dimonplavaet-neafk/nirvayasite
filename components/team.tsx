@@ -44,7 +44,7 @@ export function Team() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="font-heading text-3xl md:text-5xl uppercase tracking-[0.15em]">
+          <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em]">
             Наша команда
           </h2>
         </motion.div>
