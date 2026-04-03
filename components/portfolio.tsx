@@ -31,59 +31,52 @@ const projects = [
   },
 ]
 
-// Lotus petal SVG component for decorations
-function LotusPetal({ 
-  size = 20, 
-  rotation = 0, 
-  opacity = 0.1 
-}: { 
-  size?: number
-  rotation?: number
-  opacity?: number 
-}) {
+// Semicircle decoration component
+function SemicircleDecoration({ isInView }: { isInView: boolean }) {
   return (
-    <svg
-      width={size}
-      height={size * 1.5}
-      viewBox="0 0 20 30"
-      fill="none"
-      style={{ 
-        transform: `rotate(${rotation}deg)`,
-        opacity 
-      }}
-    >
-      <path
-        d="M10 2 Q10 15, 10 28 Q5 15, 10 2"
-        stroke="#C8943E"
-        strokeWidth="1"
+    <div className="flex items-center justify-center gap-[10px] mb-8">
+      {/* Left semicircle - opens left */}
+      <motion.svg
+        initial={{ opacity: 0, x: 5 }}
+        animate={isInView ? { opacity: 0.2, x: 0 } : {}}
+        transition={{ duration: 0.8 }}
+        width="40"
+        height="20"
+        viewBox="0 0 40 20"
         fill="none"
-      />
-      <path
-        d="M10 2 Q10 15, 10 28 Q15 15, 10 2"
-        stroke="#C8943E"
-        strokeWidth="1"
+      >
+        <path
+          d="M40 20 A20 20 0 0 1 40 0"
+          stroke="#C8943E"
+          strokeWidth="1"
+          fill="none"
+        />
+      </motion.svg>
+      
+      {/* Right semicircle - opens right */}
+      <motion.svg
+        initial={{ opacity: 0, x: -5 }}
+        animate={isInView ? { opacity: 0.2, x: 0 } : {}}
+        transition={{ duration: 0.8 }}
+        width="40"
+        height="20"
+        viewBox="0 0 40 20"
         fill="none"
-      />
-    </svg>
+      >
+        <path
+          d="M0 0 A20 20 0 0 1 0 20"
+          stroke="#C8943E"
+          strokeWidth="1"
+          fill="none"
+        />
+      </motion.svg>
+    </div>
   )
 }
 
 export function Portfolio() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
-
-  // Decorative lotus petals configuration
-  const leftPetals = [
-    { top: '15%', size: 22, rotation: -15, opacity: 0.12, delay: 0.2 },
-    { top: '45%', size: 18, rotation: 10, opacity: 0.08, delay: 0.4 },
-    { top: '75%', size: 25, rotation: -25, opacity: 0.15, delay: 0.6 },
-  ]
-  
-  const rightPetals = [
-    { top: '20%', size: 20, rotation: 20, opacity: 0.1, delay: 0.3 },
-    { top: '55%', size: 24, rotation: -10, opacity: 0.12, delay: 0.5 },
-    { top: '80%', size: 16, rotation: 30, opacity: 0.08, delay: 0.7 },
-  ]
 
   return (
     <section id="portfolio" className="py-24 md:py-32 bg-[#0A0E1A] relative overflow-hidden">
@@ -94,38 +87,6 @@ export function Portfolio() {
           background: `linear-gradient(180deg, var(--teal) 0%, transparent 50%)`
         }}
       />
-      
-      {/* Decorative lotus petals - left side */}
-      <div className="absolute left-4 md:left-8 lg:left-12 inset-y-0 pointer-events-none hidden md:block">
-        {leftPetals.map((petal, index) => (
-          <motion.div
-            key={`left-${index}`}
-            className="absolute"
-            style={{ top: petal.top }}
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: petal.delay }}
-          >
-            <LotusPetal size={petal.size} rotation={petal.rotation} opacity={petal.opacity} />
-          </motion.div>
-        ))}
-      </div>
-      
-      {/* Decorative lotus petals - right side */}
-      <div className="absolute right-4 md:right-8 lg:right-12 inset-y-0 pointer-events-none hidden md:block">
-        {rightPetals.map((petal, index) => (
-          <motion.div
-            key={`right-${index}`}
-            className="absolute"
-            style={{ top: petal.top }}
-            initial={{ opacity: 0, x: 20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: petal.delay }}
-          >
-            <LotusPetal size={petal.size} rotation={petal.rotation} opacity={petal.opacity} />
-          </motion.div>
-        ))}
-      </div>
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -134,6 +95,9 @@ export function Portfolio() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
+          {/* Semicircle decoration above heading */}
+          <SemicircleDecoration isInView={isInView} />
+          
           {/* Heading with extending lines - centered */}
           <div className="flex items-center justify-center gap-4">
             <motion.div

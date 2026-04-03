@@ -112,31 +112,38 @@ export function Hero() {
       {/* Content - positioned bottom-left */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
         <div className="max-w-full md:max-w-[50%]">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-serif italic text-gold text-sm md:text-base tracking-wider mb-4"
-          >
-            ВИДЕОПРОДАКШН СТУДИЯ
-          </motion.p>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-serif italic text-2xl md:text-3xl lg:text-[3rem] leading-[1.2] mb-6 text-balance text-foreground"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="font-serif italic text-3xl md:text-4xl lg:text-[4.5rem] leading-[1.1] mb-4 text-balance"
+            style={{
+              background: 'linear-gradient(135deg, #C8943E, #E8D5A8)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
           >
-            Где свет встречает смысл
+            Ваша история заслуживает лучшего кадра
           </motion.h1>
+
+          {/* Thin gold breathing line */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="w-[60px] h-px mb-6 animate-breathe-gold-line origin-left"
+            style={{ backgroundColor: '#C8943E' }}
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="font-serif italic text-foreground/80 text-base md:text-lg max-w-xl mb-8 leading-relaxed"
+            className="font-sans text-[1.15rem] max-w-xl mb-8 leading-[1.8]"
+            style={{ color: '#B0AAA0' }}
           >
-            NIRVAYA STUDIO — клипы, реклама и промо на грани искусства и технологий
+            Видеопродакшн для артистов, брендов и маркетплейсов — от концепта до финального монтажа
           </motion.p>
 
           <motion.div

@@ -13,18 +13,18 @@ const stats = [
 
 function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: string; isInView: boolean }) {
   const [displayValue, setDisplayValue] = useState(0)
-  const [hasAnimated, setHasAnimated] = useState(false)
+  const animationRef = useRef<number | null>(null)
+  const hasAnimatedRef = useRef(false)
 
   useEffect(() => {
     // Skip if not in view, already animated, or value is 0 (text stats)
-    if (!isInView || hasAnimated || value === 0) return
+    if (!isInView || hasAnimatedRef.current || value === 0) return
 
-    setHasAnimated(true)
-    let startTime: number | null = null
+    hasAnimatedRef.current = true
+    const startTime = performance.now()
     const duration = 2000 // 2 seconds duration
 
     const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime
       const elapsed = currentTime - startTime
       const progress = Math.min(elapsed / duration, 1)
       
@@ -35,7 +35,7 @@ function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: st
       setDisplayValue(currentValue)
 
       if (progress < 1) {
-        requestAnimationFrame(animate)
+        animationRef.current = requestAnimationFrame(animate)
       } else {
         // Ensure final value is exact
         setDisplayValue(value)
@@ -43,8 +43,14 @@ function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: st
     }
 
     // Start animation
-    requestAnimationFrame(animate)
-  }, [isInView, value, hasAnimated])
+    animationRef.current = requestAnimationFrame(animate)
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [isInView, value])
 
   // Display the animated value with suffix
   return (
