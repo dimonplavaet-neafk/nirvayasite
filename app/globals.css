@@ -251,3 +251,152 @@
   animation: float-up var(--particle-duration, 15s) linear infinite;
   animation-delay: var(--particle-delay, 0s);
 }
+
+/* Gold gradient breathing line animation */
+@keyframes breathe-gold-line {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-breathe-gold-line {
+  animation: breathe-gold-line 3s ease-in-out infinite;
+}
+
+/* Lotus stroke draw animation */
+@keyframes stroke-draw {
+  from {
+    stroke-dashoffset: var(--stroke-length, 100);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Lotus breathing animation */
+@keyframes lotus-breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.animate-lotus-breathe {
+  animation: lotus-breathe 4s ease-in-out infinite;
+}
+
+/* Mandala rotation */
+@keyframes mandala-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-mandala-rotate {
+  animation: mandala-rotate 30s linear infinite;
+}
+
+/* Line grow animation */
+@keyframes line-grow {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 60px;
+    opacity: 1;
+  }
+}
+
+/* Dot pulse animation */
+@keyframes dot-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+}
+
+/* Triangle dot sequential pulse */
+.animate-dot-pulse-1 {
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
+.animate-dot-pulse-2 {
+  animation: dot-pulse 2s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+.animate-dot-pulse-3 {
+  animation: dot-pulse 2s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+/* Center dot glow */
+@keyframes center-glow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-center-glow {
+  animation: center-glow 4s ease-in-out infinite;
+}
+
+/* Mandala line grow animation */
+@keyframes mandala-line-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Center dot pulse for mandala - works with SVG circle */
+@keyframes mandala-center-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    r: 2;
+  }
+  50% {
+    opacity: 0.8;
+    r: 3;
+  }
+}
+
+.animate-mandala-center-pulse {
+  animation: mandala-center-pulse 4s ease-in-out infinite;
+}
+
+/* Triangle center dot pulse - scales 1.0 to 1.5 and opacity 0.4 to 1.0 */
+@keyframes triangle-center-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+.animate-triangle-center-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: triangle-center-pulse 3s ease-in-out infinite;
+}

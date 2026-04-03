@@ -13,32 +13,46 @@ const stats = [
 
 function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: string; isInView: boolean }) {
   const [displayValue, setDisplayValue] = useState(0)
-  const [hasAnimated, setHasAnimated] = useState(false)
+  const animationRef = useRef<number | null>(null)
+  const hasAnimatedRef = useRef(false)
 
   useEffect(() => {
-    if (!isInView || value === 0 || hasAnimated) return
+    // Skip if not in view, already animated, or value is 0 (text stats)
+    if (!isInView || hasAnimatedRef.current || value === 0) return
 
-    setHasAnimated(true)
-    let startTime: number | null = null
-    const duration = 2000
+    hasAnimatedRef.current = true
+    const startTime = performance.now()
+    const duration = 2000 // 2 seconds duration
 
     const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime
-      const progress = Math.min((currentTime - startTime) / duration, 1)
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
       
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-      setDisplayValue(Math.floor(easeOutQuart * value))
+      // easeOut animation curve
+      const easeOut = 1 - Math.pow(1 - progress, 3)
+      const currentValue = Math.floor(easeOut * value)
+      
+      setDisplayValue(currentValue)
 
       if (progress < 1) {
-        requestAnimationFrame(animate)
+        animationRef.current = requestAnimationFrame(animate)
       } else {
+        // Ensure final value is exact
         setDisplayValue(value)
       }
     }
 
-    requestAnimationFrame(animate)
-  }, [isInView, value, hasAnimated])
+    // Start animation
+    animationRef.current = requestAnimationFrame(animate)
 
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [isInView, value])
+
+  // Display the animated value with suffix
   return (
     <span>
       {displayValue}{suffix}
@@ -83,7 +97,7 @@ export function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-heading text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.1em] leading-tight mb-8"
+              className="font-serif font-normal text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.15em] leading-tight mb-8"
             >
               Мы не используем технологии — мы ими владеем
             </motion.h2>

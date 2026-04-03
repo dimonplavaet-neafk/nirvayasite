@@ -66,30 +66,39 @@ export function Contacts() {
           {/* Soft radial glow behind heading */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[200px] bg-gold/5 blur-3xl rounded-full pointer-events-none" />
           
-          {/* Heading with extending teal lines */}
+          {/* Heading with extending gold lines */}
           <div className="flex items-center justify-center gap-4 mb-6 relative">
             <motion.div
               initial={{ width: 0 }}
               animate={isInView ? { width: 60 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-px hidden md:block"
-              style={{ backgroundColor: 'var(--teal)' }}
+              className="h-px hidden md:block bg-gold"
             />
-            <h2 className="font-heading text-3xl md:text-5xl uppercase tracking-[0.15em] text-balance">
+            <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em] text-balance">
               Готовы создать нечто мощное?
             </h2>
             <motion.div
               initial={{ width: 0 }}
               animate={isInView ? { width: 60 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-px hidden md:block"
-              style={{ backgroundColor: 'var(--teal)' }}
+              className="h-px hidden md:block bg-gold"
             />
           </div>
           
-          <p className="font-serif text-foreground-muted text-lg md:text-xl mb-12">
+          <p className="font-serif text-foreground-muted text-lg md:text-xl mb-4">
             Расскажите о вашем проекте — мы ответим в течение 24 часов
           </p>
+          
+          {/* Gold gradient breathing line below subtitle */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="w-[120px] h-px mx-auto mb-12 animate-breathe-gold-line"
+            style={{ 
+              background: 'linear-gradient(to right, transparent, #C8943E, transparent)'
+            }}
+          />
         </motion.div>
 
         <motion.div
