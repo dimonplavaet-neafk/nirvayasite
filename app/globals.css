@@ -367,18 +367,18 @@
   }
 }
 
-/* Center dot pulse for mandala */
+/* Center dot pulse for mandala - works with SVG circle */
 @keyframes mandala-center-pulse {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.5;
+    opacity: 0.3;
+    r: 2;
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.3);
-    opacity: 1;
+    opacity: 0.8;
+    r: 3;
   }
 }
 
 .animate-mandala-center-pulse {
-  animation: mandala-center-pulse 3s ease-in-out infinite;
+  animation: mandala-center-pulse 4s ease-in-out infinite;
 }

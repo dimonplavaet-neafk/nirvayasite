@@ -16,29 +16,37 @@ function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: st
   const [hasAnimated, setHasAnimated] = useState(false)
 
   useEffect(() => {
-    if (!isInView || value === 0 || hasAnimated) return
+    // Skip if not in view, already animated, or value is 0 (text stats)
+    if (!isInView || hasAnimated || value === 0) return
 
     setHasAnimated(true)
     let startTime: number | null = null
-    const duration = 2000
+    const duration = 2000 // 2 seconds duration
 
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime
-      const progress = Math.min((currentTime - startTime) / duration, 1)
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
       
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-      setDisplayValue(Math.floor(easeOutQuart * value))
+      // easeOut animation curve
+      const easeOut = 1 - Math.pow(1 - progress, 3)
+      const currentValue = Math.floor(easeOut * value)
+      
+      setDisplayValue(currentValue)
 
       if (progress < 1) {
         requestAnimationFrame(animate)
       } else {
+        // Ensure final value is exact
         setDisplayValue(value)
       }
     }
 
+    // Start animation
     requestAnimationFrame(animate)
   }, [isInView, value, hasAnimated])
 
+  // Display the animated value with suffix
   return (
     <span>
       {displayValue}{suffix}

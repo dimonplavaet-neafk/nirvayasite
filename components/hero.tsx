@@ -127,7 +127,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-serif italic text-2xl md:text-3xl lg:text-[3rem] leading-[1.2] mb-6 text-balance text-foreground"
           >
-            Мы не используем технологии — мы ими владеем
+            Где свет встречает смысл
           </motion.h1>
 
           <motion.p
@@ -136,7 +136,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="font-serif italic text-foreground/80 text-base md:text-lg max-w-xl mb-8 leading-relaxed"
           >
-            Кинематографичные клипы, рекламные ролики и промо-видео. Живая съёмка, AI-генерация, профессиональный монтаж — без границ и компромиссов
+            NIRVAYA STUDIO — клипы, реклама и промо на грани искусства и технологий
           </motion.p>
 
           <motion.div

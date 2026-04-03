@@ -4,6 +4,8 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 
 // DIVIDER 1: Animated triangle made of three dots (Hero → Services)
+// Perfect equilateral triangle: top (50%, 0%), bottom-left (28%, 100%), bottom-right (72%, 100%)
+// Container: 50px width, 40px height
 export function TriangleDotsDivider() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
@@ -15,43 +17,68 @@ export function TriangleDotsDivider() {
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.6 }}
         className="relative"
-        style={{ width: 40, height: 40 }}
+        style={{ width: 50, height: 40 }}
       >
-        {/* Three dots as triangle vertices */}
-        {/* Top dot */}
-        <div 
-          className="absolute w-1.5 h-1.5 rounded-full bg-gold animate-dot-pulse-1"
-          style={{ top: 0, left: '50%', transform: 'translateX(-50%)' }}
-        />
-        {/* Bottom-left dot */}
-        <div 
-          className="absolute w-1.5 h-1.5 rounded-full bg-gold animate-dot-pulse-2"
-          style={{ bottom: 0, left: 0 }}
-        />
-        {/* Bottom-right dot */}
-        <div 
-          className="absolute w-1.5 h-1.5 rounded-full bg-gold animate-dot-pulse-3"
-          style={{ bottom: 0, right: 0 }}
-        />
-        
-        {/* Connecting lines */}
+        {/* SVG with connecting lines and dots */}
         <svg 
-          className="absolute inset-0" 
-          viewBox="0 0 40 40"
+          className="absolute inset-0 w-full h-full" 
+          viewBox="0 0 50 40"
           fill="none"
         >
+          {/* Connecting lines */}
           {/* Top to bottom-left */}
-          <line x1="20" y1="3" x2="3" y2="37" stroke="#C8943E" strokeWidth="1" opacity="0.2" />
+          <line x1="25" y1="3" x2="14" y2="37" stroke="#C8943E" strokeWidth="1" opacity="0.2" />
           {/* Bottom-left to bottom-right */}
-          <line x1="3" y1="37" x2="37" y2="37" stroke="#C8943E" strokeWidth="1" opacity="0.2" />
+          <line x1="14" y1="37" x2="36" y2="37" stroke="#C8943E" strokeWidth="1" opacity="0.2" />
           {/* Bottom-right to top */}
-          <line x1="37" y1="37" x2="20" y2="3" stroke="#C8943E" strokeWidth="1" opacity="0.2" />
+          <line x1="36" y1="37" x2="25" y2="3" stroke="#C8943E" strokeWidth="1" opacity="0.2" />
         </svg>
         
-        {/* Center dot with glow */}
+        {/* Three dots as triangle vertices */}
+        {/* Top dot at (50%, 0%) */}
         <div 
-          className="absolute w-1 h-1 rounded-full bg-gold animate-center-glow"
-          style={{ top: '55%', left: '50%', transform: 'translate(-50%, -50%)' }}
+          className="absolute rounded-full bg-gold animate-dot-pulse-1"
+          style={{ 
+            width: 6, 
+            height: 6, 
+            top: 0, 
+            left: '50%', 
+            transform: 'translateX(-50%)' 
+          }}
+        />
+        {/* Bottom-left dot at (28%, 100%) */}
+        <div 
+          className="absolute rounded-full bg-gold animate-dot-pulse-2"
+          style={{ 
+            width: 6, 
+            height: 6, 
+            bottom: 0, 
+            left: '28%', 
+            transform: 'translateX(-50%)' 
+          }}
+        />
+        {/* Bottom-right dot at (72%, 100%) */}
+        <div 
+          className="absolute rounded-full bg-gold animate-dot-pulse-3"
+          style={{ 
+            width: 6, 
+            height: 6, 
+            bottom: 0, 
+            left: '72%', 
+            transform: 'translateX(-50%)' 
+          }}
+        />
+        
+        {/* Center dot with glow at (50%, 55%) */}
+        <div 
+          className="absolute rounded-full bg-gold animate-center-glow"
+          style={{ 
+            width: 4, 
+            height: 4, 
+            top: '55%', 
+            left: '50%', 
+            transform: 'translate(-50%, -50%)' 
+          }}
         />
       </motion.div>
     </div>
@@ -173,13 +200,24 @@ export function LotusDivider() {
 }
 
 // DIVIDER 3: Mini-mandala with radiating lines (Portfolio → About)
+// SVG viewBox 0 0 40 40, center at 20 20, 8 lines radiating outward 15px each
 export function MandalaDivider() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
 
-  const lines = 8
-  const lineLength = 18
-  const centerSize = 3
+  // 8 angles: 0, 45, 90, 135, 180, 225, 270, 315 degrees
+  const angles = [0, 45, 90, 135, 180, 225, 270, 315]
+  const lineLength = 15
+  const center = 20
+
+  // Calculate line endpoints from center outward
+  const getLineEnd = (angleDeg: number) => {
+    const angleRad = (angleDeg * Math.PI) / 180
+    return {
+      x: center + Math.cos(angleRad) * lineLength,
+      y: center + Math.sin(angleRad) * lineLength
+    }
+  }
 
   return (
     <div ref={ref} className="py-12 flex items-center justify-center">
@@ -187,51 +225,49 @@ export function MandalaDivider() {
         initial={{ opacity: 0, scale: 0.5 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.6 }}
-        className="relative"
+        className={isInView ? 'animate-mandala-rotate' : ''}
         style={{ width: 40, height: 40 }}
       >
-        {/* Rotating container for lines */}
-        <div 
-          className={`absolute inset-0 ${isInView ? 'animate-mandala-rotate' : ''}`}
-          style={{ transformOrigin: 'center center' }}
+        <svg 
+          viewBox="0 0 40 40" 
+          width="40" 
+          height="40"
+          fill="none"
         >
-          {Array.from({ length: lines }).map((_, i) => {
-            const angle = (360 / lines) * i
+          {/* 8 radiating lines */}
+          {angles.map((angle, i) => {
+            const end = getLineEnd(angle)
             return (
-              <motion.div
-                key={i}
-                initial={{ scaleY: 0 }}
-                animate={isInView ? { scaleY: 1 } : {}}
+              <motion.line
+                key={angle}
+                x1={center}
+                y1={center}
+                x2={end.x}
+                y2={end.y}
+                stroke="#C8943E"
+                strokeWidth="1"
+                opacity="0.3"
+                initial={{ pathLength: 0 }}
+                animate={isInView ? { pathLength: 1 } : {}}
                 transition={{ 
                   duration: 0.3, 
                   delay: i * 0.1,
                   ease: 'easeOut'
                 }}
-                className="absolute bg-gold"
-                style={{
-                  width: 1,
-                  height: lineLength,
-                  left: '50%',
-                  top: '50%',
-                  transformOrigin: 'top center',
-                  transform: `translateX(-50%) rotate(${angle}deg)`,
-                  opacity: 0.3
-                }}
               />
             )
           })}
-        </div>
-        
-        {/* Center dot */}
-        <div 
-          className="absolute bg-gold rounded-full animate-mandala-center-pulse"
-          style={{
-            width: centerSize,
-            height: centerSize,
-            top: '50%',
-            left: '50%',
-          }}
-        />
+          
+          {/* Center dot with pulse animation */}
+          <circle 
+            cx={center} 
+            cy={center} 
+            r="2" 
+            fill="#C8943E"
+            className="animate-mandala-center-pulse"
+            style={{ transformOrigin: 'center' }}
+          />
+        </svg>
       </motion.div>
     </div>
   )
