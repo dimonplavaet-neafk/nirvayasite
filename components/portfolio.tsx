@@ -31,49 +31,6 @@ const projects = [
   },
 ]
 
-// Semicircle decoration component
-function SemicircleDecoration({ isInView }: { isInView: boolean }) {
-  return (
-    <div className="flex items-center justify-center gap-[10px] mb-8">
-      {/* Left semicircle - opens left */}
-      <motion.svg
-        initial={{ opacity: 0, x: 5 }}
-        animate={isInView ? { opacity: 0.2, x: 0 } : {}}
-        transition={{ duration: 0.8 }}
-        width="40"
-        height="20"
-        viewBox="0 0 40 20"
-        fill="none"
-      >
-        <path
-          d="M40 20 A20 20 0 0 1 40 0"
-          stroke="#C8943E"
-          strokeWidth="1"
-          fill="none"
-        />
-      </motion.svg>
-      
-      {/* Right semicircle - opens right */}
-      <motion.svg
-        initial={{ opacity: 0, x: -5 }}
-        animate={isInView ? { opacity: 0.2, x: 0 } : {}}
-        transition={{ duration: 0.8 }}
-        width="40"
-        height="20"
-        viewBox="0 0 40 20"
-        fill="none"
-      >
-        <path
-          d="M0 0 A20 20 0 0 1 0 20"
-          stroke="#C8943E"
-          strokeWidth="1"
-          fill="none"
-        />
-      </motion.svg>
-    </div>
-  )
-}
-
 export function Portfolio() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
@@ -95,9 +52,6 @@ export function Portfolio() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          {/* Semicircle decoration above heading */}
-          <SemicircleDecoration isInView={isInView} />
-          
           {/* Heading with extending lines - centered */}
           <div className="flex items-center justify-center gap-4">
             <motion.div
