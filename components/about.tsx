@@ -2,14 +2,76 @@
 
 import { useRef, useEffect, useState } from "react"
 import { motion, useInView } from "framer-motion"
-import { Film, Sparkles, Layers, Clock } from "lucide-react"
 
+// CHANGE 3: New stats with custom icons
 const stats = [
-  { icon: Film, number: 50, suffix: "+", label: "завершённых проектов" },
-  { icon: Sparkles, number: 0, suffix: "", label: "AI + режиссура", isText: true, text: "AI + режиссура" },
-  { icon: Layers, number: 0, suffix: "", label: "кино-качество", isText: true, text: "Кино-качество" },
-  { icon: Clock, number: 7, suffix: "", label: "дней средний срок" },
+  { 
+    number: 50, 
+    suffix: "+", 
+    label: "проектов",
+    icon: "triangle" // Gold triangle outline like logo
+  },
+  { 
+    number: 3, 
+    suffix: "", 
+    label: "мастера",
+    icon: "dots" // Three gold dots in a row
+  },
+  { 
+    number: 0, 
+    suffix: "", 
+    label: "форматов",
+    icon: "infinity", // Gold infinity symbol with pulse
+    isSymbol: true,
+    symbol: "∞"
+  },
+  { 
+    number: 7, 
+    suffix: "", 
+    label: "дней средний срок",
+    icon: "clock" // Gold circle outline
+  },
 ]
+
+// Custom SVG icons for stats
+function StatIcon({ type }: { type: string }) {
+  switch (type) {
+    case "triangle":
+      return (
+        <svg width="24" height="22" viewBox="0 0 24 22" fill="none">
+          <path d="M12 2L22 20H2L12 2Z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+        </svg>
+      )
+    case "dots":
+      return (
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+        </div>
+      )
+    case "infinity":
+      return (
+        <svg width="24" height="12" viewBox="0 0 24 12" fill="none" className="animate-infinity-pulse">
+          <path 
+            d="M6 6C6 3.5 4 1 1.5 1C-1 1 -1 11 1.5 11C4 11 6 8.5 6 6ZM6 6C6 3.5 8 1 10.5 1C13 1 15 3.5 15 6C15 8.5 13 11 10.5 11C8 11 6 8.5 6 6Z" 
+            stroke="#C8943E" 
+            strokeWidth="1.5" 
+            fill="none"
+            transform="translate(3, 0)"
+          />
+        </svg>
+      )
+    case "clock":
+      return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
 
 function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: string; isInView: boolean }) {
   const [displayValue, setDisplayValue] = useState(0)
@@ -17,18 +79,15 @@ function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: st
   const hasAnimatedRef = useRef(false)
 
   useEffect(() => {
-    // Skip if not in view, already animated, or value is 0 (text stats)
     if (!isInView || hasAnimatedRef.current || value === 0) return
 
     hasAnimatedRef.current = true
     const startTime = performance.now()
-    const duration = 2000 // 2 seconds duration
+    const duration = 2000
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime
       const progress = Math.min(elapsed / duration, 1)
-      
-      // easeOut animation curve
       const easeOut = 1 - Math.pow(1 - progress, 3)
       const currentValue = Math.floor(easeOut * value)
       
@@ -37,12 +96,10 @@ function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: st
       if (progress < 1) {
         animationRef.current = requestAnimationFrame(animate)
       } else {
-        // Ensure final value is exact
         setDisplayValue(value)
       }
     }
 
-    // Start animation
     animationRef.current = requestAnimationFrame(animate)
 
     return () => {
@@ -52,7 +109,6 @@ function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: st
     }
   }, [isInView, value])
 
-  // Display the animated value with suffix
   return (
     <span>
       {displayValue}{suffix}
@@ -65,20 +121,22 @@ export function About() {
   const statsRef = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const statsInView = useInView(statsRef, { once: true, amount: 0.5 })
+  const [showLines, setShowLines] = useState(false)
+
+  // Show stat lines after count-up animation completes
+  useEffect(() => {
+    if (statsInView) {
+      const timer = setTimeout(() => {
+        setShowLines(true)
+      }, 2200) // After 2s count-up + 200ms buffer
+      return () => clearTimeout(timer)
+    }
+  }, [statsInView])
 
   return (
     <section id="about" className="py-24 md:py-32 bg-background-secondary relative overflow-hidden">
-      {/* Diamond grid background */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, var(--gold) 1px, transparent 1px),
-            linear-gradient(-45deg, var(--gold) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
-        }}
-      />
+      {/* Circuit board background pattern - CHANGE 6 */}
+      <div className="absolute inset-0 circuit-pattern" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
@@ -88,7 +146,7 @@ export function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="font-serif text-gold text-sm tracking-wider mb-4"
+              className="font-heading font-normal text-gold text-sm tracking-wider mb-4"
             >
               О NIRVAYA STUDIO
             </motion.p>
@@ -97,7 +155,7 @@ export function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-serif font-normal text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.15em] leading-tight mb-8"
+              className="font-heading font-semibold text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.12em] leading-tight mb-8"
             >
               Мы не используем технологии — мы ими владеем
             </motion.h2>
@@ -120,7 +178,7 @@ export function About() {
               <p>
                 AI для нас — это инструмент, как камера или свет. Не замена мастерства, а его усилитель. Наша ключевая сила — сохранение внешности реального человека в кадре, режиссура каждой сцены и монтаж, который превращает набор кадров в историю с эмоцией и ритмом.
               </p>
-              <p className="font-serif italic text-foreground/60">
+              <p className="font-heading font-normal italic text-foreground/60">
                 NIRVAYA STUDIO — это несокрушимое качество. Каждый кадр. Каждый проект.
               </p>
             </motion.div>
@@ -144,7 +202,7 @@ export function About() {
           </motion.div>
         </div>
 
-        {/* Stats */}
+        {/* Stats - CHANGE 3 */}
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 40 }}
@@ -158,17 +216,29 @@ export function About() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={statsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="text-center flex flex-col items-center"
               >
-                <stat.icon className="w-6 h-6 text-gold mx-auto mb-4" />
-                <div className="font-heading text-3xl md:text-4xl text-gold mb-2">
-                  {stat.isText ? (
-                    <span className="text-xl md:text-2xl">{stat.text}</span>
+                {/* Custom icon */}
+                <div className="mb-4 h-6 flex items-center justify-center">
+                  <StatIcon type={stat.icon} />
+                </div>
+                
+                {/* Number or symbol */}
+                <div className="font-heading font-semibold text-3xl md:text-4xl text-gold mb-2">
+                  {stat.isSymbol ? (
+                    <span className="text-4xl md:text-5xl">{stat.symbol}</span>
                   ) : (
                     <AnimatedNumber value={stat.number} suffix={stat.suffix} isInView={statsInView} />
                   )}
                 </div>
+                
+                {/* Thin gold line below number */}
+                <div 
+                  className={`h-px bg-gold mb-3 transition-all duration-500 ${showLines ? 'w-10 opacity-100' : 'w-0 opacity-0'}`}
+                />
+                
+                {/* Label */}
                 <p className="text-foreground-muted text-sm">{stat.label}</p>
               </motion.div>
             ))}

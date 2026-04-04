@@ -60,7 +60,7 @@ export function Portfolio() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="h-px bg-gold hidden md:block"
             />
-            <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em] text-center">
+            <h2 className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em] text-center">
               Избранные работы
             </h2>
             <motion.div
@@ -83,7 +83,7 @@ export function Portfolio() {
             >
               <div className="relative aspect-video bg-placeholder-bg border border-placeholder-border rounded-sm overflow-hidden transition-all duration-500 portfolio-card">
                 {/* Number in top left */}
-                <span className="absolute top-4 left-4 font-heading text-2xl text-gold/30 z-10">
+                <span className="absolute top-4 left-4 font-heading font-semibold text-2xl text-gold/30 z-10">
                   {project.number}
                 </span>
 
@@ -123,10 +123,10 @@ export function Portfolio() {
 
               {/* Project info */}
               <div className="mt-4 flex items-center justify-between">
-                <h3 className="font-heading text-lg uppercase tracking-wider group-hover:text-gold transition-colors">
+                <h3 className="font-heading font-semibold text-lg uppercase tracking-wider group-hover:text-gold transition-colors">
                   {project.title}
                 </h3>
-                <span className="text-foreground-muted text-sm font-serif">
+                <span className="text-foreground-muted text-sm font-heading font-normal">
                   {project.tag}
                 </span>
               </div>

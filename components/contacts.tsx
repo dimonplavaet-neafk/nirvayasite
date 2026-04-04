@@ -74,7 +74,7 @@ export function Contacts() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="h-px hidden md:block bg-gold"
             />
-            <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em] text-balance">
+            <h2 className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em] text-balance">
               Готовы создать нечто мощное?
             </h2>
             <motion.div
@@ -85,7 +85,7 @@ export function Contacts() {
             />
           </div>
           
-          <p className="font-serif text-foreground-muted text-lg md:text-xl mb-4">
+          <p className="font-heading font-normal text-foreground-muted text-lg md:text-xl mb-4">
             Расскажите о вашем проекте — мы ответим в течение 24 часов
           </p>
           

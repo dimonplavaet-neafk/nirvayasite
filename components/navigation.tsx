@@ -37,13 +37,13 @@ export function Navigation() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-          {/* Logo - Triangle icon + NIRVAYA ◆ STUDIO */}
+          {/* Logo - Triangle icon + NIRVAYA ◆ STUDIO with glitch effect */}
           <a 
             href="#" 
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 glitch-hover"
           >
             <TriangleIcon className="text-gold w-5 h-[18px]" />
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 glitch-text">
               <span className="font-heading text-gold text-lg md:text-xl font-bold uppercase tracking-[0.08em]">
                 NIRVAYA
               </span>
