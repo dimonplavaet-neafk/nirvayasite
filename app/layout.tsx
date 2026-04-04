@@ -1,23 +1,18 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, Cormorant_Garamond, Inter } from 'next/font/google'
+import { Rajdhani, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { ScanlinesOverlay } from '@/components/scanlines-overlay'
 
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ["latin"],
+const rajdhani = Rajdhani({ 
+  subsets: ["latin", "latin-ext"],
   weight: ["300", "400", "500", "600", "700"],
   variable: '--font-heading'
 })
 
-const cormorant = Cormorant_Garamond({ 
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: '--font-serif'
-})
-
 const inter = Inter({ 
   subsets: ["latin", "cyrillic"],
+  weight: ["300", "400", "500", "600"],
   variable: '--font-sans'
 })
 
@@ -51,8 +46,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="scroll-smooth">
-      <body className={`${spaceGrotesk.variable} ${cormorant.variable} ${inter.variable} font-sans antialiased`}>
+      <body className={`${rajdhani.variable} ${inter.variable} font-sans antialiased`}>
         {children}
+        <ScanlinesOverlay />
         <Analytics />
       </body>
     </html>

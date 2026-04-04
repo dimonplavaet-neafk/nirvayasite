@@ -39,8 +39,7 @@
 
 @theme inline {
   --font-sans: var(--font-sans), 'Inter', system-ui, sans-serif;
-  --font-serif: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
-  --font-heading: var(--font-heading), 'Space Grotesk', system-ui, sans-serif;
+  --font-heading: var(--font-heading), 'Rajdhani', system-ui, sans-serif;
   
   --color-background: var(--background);
   --color-background-secondary: var(--background-secondary);
@@ -399,4 +398,160 @@
   transform-origin: center;
   transform-box: fill-box;
   animation: triangle-center-pulse 3s ease-in-out infinite;
+}
+
+/* CHANGE 4: Navbar glitch effect on hover */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+    text-shadow: none;
+    clip-path: inset(0 0 0 0);
+  }
+  10% {
+    transform: translate(-2px, 1px);
+    text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+    clip-path: inset(20% 0 60% 0);
+  }
+  20% {
+    transform: translate(2px, -1px);
+    text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+    clip-path: inset(40% 0 30% 0);
+  }
+  30% {
+    transform: translate(-1px, 2px);
+    text-shadow: 1px 0 #ff0000, -1px 0 #00ffff;
+    clip-path: inset(70% 0 10% 0);
+  }
+  40% {
+    transform: translate(1px, -2px);
+    text-shadow: -1px 0 #ff0000, 1px 0 #00ffff;
+    clip-path: inset(10% 0 80% 0);
+  }
+  50%, 100% {
+    transform: translate(0);
+    text-shadow: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.glitch-hover:hover .glitch-text {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* CHANGE 3: Infinity symbol pulse animation */
+@keyframes infinity-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.animate-infinity-pulse {
+  animation: infinity-pulse 3s ease-in-out infinite;
+}
+
+/* CHANGE 6: Circuit board background pattern */
+.circuit-pattern {
+  background-image:
+    /* Horizontal lines */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 59px,
+      rgba(200, 148, 62, 0.02) 59px,
+      rgba(200, 148, 62, 0.02) 60px
+    ),
+    /* Vertical lines */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 59px,
+      rgba(200, 148, 62, 0.02) 59px,
+      rgba(200, 148, 62, 0.02) 60px
+    ),
+    /* Intersection dots */
+    radial-gradient(
+      circle at 0 0,
+      rgba(200, 148, 62, 0.03) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px, 60px 60px, 60px 60px;
+  background-position: 0 0, 0 0, 0 0;
+}
+
+/* CHANGE 8: Neon glow on section dividers */
+.divider-neon-glow {
+  filter: drop-shadow(0 0 6px rgba(27, 107, 138, 0.4)) drop-shadow(0 0 12px rgba(27, 107, 138, 0.2));
+}
+
+/* CHANGE 7: Service card hover rings */
+@keyframes ring-expand-1 {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes ring-expand-2 {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+.service-card .hover-ring-1,
+.service-card .hover-ring-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid #C8943E;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.service-card .hover-ring-1 {
+  width: 240px;
+  height: 240px;
+}
+
+.service-card .hover-ring-2 {
+  width: 360px;
+  height: 360px;
+}
+
+.service-card:hover .hover-ring-1 {
+  animation: ring-expand-1 0.8s ease-out forwards;
+}
+
+.service-card:hover .hover-ring-2 {
+  animation: ring-expand-2 1s ease-out 0.2s forwards;
+}
+
+/* Stat line fade in */
+@keyframes stat-line-fade {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+  100% {
+    opacity: 1;
+    width: 40px;
+  }
+}
+
+.animate-stat-line {
+  animation: stat-line-fade 0.5s ease-out forwards;
 }

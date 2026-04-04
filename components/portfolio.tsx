@@ -52,23 +52,59 @@ export function Portfolio() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          {/* Heading with extending lines - centered */}
+          {/* Heading with circuit-style decorations */}
           <div className="flex items-center justify-center gap-4">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 60 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-px bg-gold hidden md:block"
-            />
-            <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em] text-center">
-              Избранные работы
+            {/* Left circuit decoration */}
+            <div className="hidden md:flex items-center">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={isInView ? { width: 80 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="h-px origin-right"
+                style={{ backgroundColor: 'rgba(200,148,62,0.15)' }}
+              />
+              <motion.div
+                initial={{ height: 0 }}
+                animate={isInView ? { height: 20 } : {}}
+                transition={{ duration: 0.3, delay: 0.8 }}
+                className="w-px origin-top"
+                style={{ backgroundColor: 'rgba(200,148,62,0.15)' }}
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isInView ? { opacity: 0.2, scale: 1 } : {}}
+                transition={{ duration: 0.2, delay: 1.1 }}
+                className="w-[3px] h-[3px] rounded-full bg-gold -ml-[1.5px]"
+              />
+            </div>
+            
+            <h2 className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em] text-center">
+              Showreel & Кейсы
             </h2>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 60 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-px bg-gold hidden md:block"
-            />
+            
+            {/* Right circuit decoration - mirrored */}
+            <div className="hidden md:flex items-center flex-row-reverse">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={isInView ? { width: 80 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="h-px origin-left"
+                style={{ backgroundColor: 'rgba(200,148,62,0.15)' }}
+              />
+              <motion.div
+                initial={{ height: 0 }}
+                animate={isInView ? { height: 20 } : {}}
+                transition={{ duration: 0.3, delay: 0.8 }}
+                className="w-px origin-top"
+                style={{ backgroundColor: 'rgba(200,148,62,0.15)' }}
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isInView ? { opacity: 0.2, scale: 1 } : {}}
+                transition={{ duration: 0.2, delay: 1.1 }}
+                className="w-[3px] h-[3px] rounded-full bg-gold -mr-[1.5px]"
+              />
+            </div>
           </div>
         </motion.div>
 
@@ -83,7 +119,7 @@ export function Portfolio() {
             >
               <div className="relative aspect-video bg-placeholder-bg border border-placeholder-border rounded-sm overflow-hidden transition-all duration-500 portfolio-card">
                 {/* Number in top left */}
-                <span className="absolute top-4 left-4 font-heading text-2xl text-gold/30 z-10">
+                <span className="absolute top-4 left-4 font-heading font-semibold text-2xl text-gold/30 z-10">
                   {project.number}
                 </span>
 
@@ -123,10 +159,10 @@ export function Portfolio() {
 
               {/* Project info */}
               <div className="mt-4 flex items-center justify-between">
-                <h3 className="font-heading text-lg uppercase tracking-wider group-hover:text-gold transition-colors">
+                <h3 className="font-heading font-semibold text-lg uppercase tracking-wider group-hover:text-gold transition-colors">
                   {project.title}
                 </h3>
-                <span className="text-foreground-muted text-sm font-serif">
+                <span className="text-foreground-muted text-sm font-heading font-normal">
                   {project.tag}
                 </span>
               </div>

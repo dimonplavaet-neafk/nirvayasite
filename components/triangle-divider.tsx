@@ -3,20 +3,20 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 
-// DIVIDER 1: Triangle with pulsing center dot (Hero → Services)
+// DIVIDER 1: Triangle with pulsing center dot (Hero -> Services)
 // Triangle: 30x26px, equilateral outline, center dot at centroid
+// CHANGE 8: Added neon glow effect
 export function TriangleDotsDivider() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
 
-  // Centroid of equilateral triangle with vertices at (15,1), (1,25), (29,25)
-  // Centroid = ((15+1+29)/3, (1+25+25)/3) = (15, 17)
   return (
     <div ref={ref} className="py-12 flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.6 }}
+        className="divider-neon-glow"
       >
         <svg
           width="30"
@@ -25,14 +25,12 @@ export function TriangleDotsDivider() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Equilateral triangle outline */}
           <path
             d="M15 1L29 25H1L15 1Z"
             stroke="#C8943E"
             strokeWidth="1"
             fill="none"
           />
-          {/* Center pulsing dot at centroid (15, 17) */}
           <circle
             cx="15"
             cy="17"
@@ -46,8 +44,8 @@ export function TriangleDotsDivider() {
   )
 }
 
-// DIVIDER 2: Lotus flower outline (Services → Portfolio)
-// 5 petals, thin gold stroke, 50px wide, draws on scroll, then breathes
+// DIVIDER 2: Lotus flower outline (Services -> Portfolio)
+// CHANGE 8: Added neon glow effect
 export function LotusDivider() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
@@ -58,7 +56,7 @@ export function LotusDivider() {
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.6 }}
-        className={isInView ? "animate-lotus-breathe" : ""}
+        className={`divider-neon-glow ${isInView ? "animate-lotus-breathe" : ""}`}
       >
         <svg
           width="50"
@@ -67,8 +65,6 @@ export function LotusDivider() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* 5 lotus petals arranged symmetrically */}
-          {/* Center petal */}
           <motion.path
             d="M25 2 Q25 15, 25 28 Q22 15, 25 2 M25 2 Q25 15, 25 28 Q28 15, 25 2"
             stroke="#C8943E"
@@ -78,7 +74,6 @@ export function LotusDivider() {
             animate={isInView ? { pathLength: 1 } : {}}
             transition={{ duration: 1, delay: 0.4 }}
           />
-          {/* Left inner petal */}
           <motion.path
             d="M18 5 Q15 15, 18 26 Q13 15, 18 5"
             stroke="#C8943E"
@@ -88,7 +83,6 @@ export function LotusDivider() {
             animate={isInView ? { pathLength: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           />
-          {/* Right inner petal */}
           <motion.path
             d="M32 5 Q35 15, 32 26 Q37 15, 32 5"
             stroke="#C8943E"
@@ -98,7 +92,6 @@ export function LotusDivider() {
             animate={isInView ? { pathLength: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           />
-          {/* Left outer petal */}
           <motion.path
             d="M10 8 Q5 16, 10 24 Q3 16, 10 8"
             stroke="#C8943E"
@@ -108,7 +101,6 @@ export function LotusDivider() {
             animate={isInView ? { pathLength: 1 } : {}}
             transition={{ duration: 0.6, delay: 0 }}
           />
-          {/* Right outer petal */}
           <motion.path
             d="M40 8 Q45 16, 40 24 Q47 16, 40 8"
             stroke="#C8943E"
@@ -124,10 +116,8 @@ export function LotusDivider() {
   )
 }
 
-// DIVIDER 3: Mini starburst/mandala (Portfolio → About)
-// 8 lines radiating from center, viewBox 0 0 40 40, center at 20 20
-// Lines at 0, 45, 90, 135, 180, 225, 270, 315 degrees, 15px long
-// Center dot pulses opacity 0.3 to 0.8, whole thing rotates 360deg over 30s
+// DIVIDER 3: Mini starburst/mandala (Portfolio -> About)
+// CHANGE 8: Added neon glow effect
 export function MandalaDivider() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
@@ -150,7 +140,7 @@ export function MandalaDivider() {
         initial={{ opacity: 0, scale: 0.5 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.6 }}
-        className={isInView ? "animate-mandala-rotate" : ""}
+        className={`divider-neon-glow ${isInView ? "animate-mandala-rotate" : ""}`}
         style={{ width: 40, height: 40 }}
       >
         <svg
@@ -159,7 +149,6 @@ export function MandalaDivider() {
           height="40"
           fill="none"
         >
-          {/* 8 radiating lines */}
           {angles.map((angle, i) => {
             const end = getLineEnd(angle)
             return (
@@ -182,8 +171,6 @@ export function MandalaDivider() {
               />
             )
           })}
-
-          {/* Center dot with pulse animation */}
           <circle
             cx={center}
             cy={center}
@@ -197,17 +184,15 @@ export function MandalaDivider() {
   )
 }
 
-// DIVIDER 4: Vertical gold line with bottom dot (About/Team → Contacts)
-// Grows top to bottom on scroll, height 60px, width 1px, #C8943E
-// 4px dot at bottom fades in after line grows
+// DIVIDER 4: Vertical gold line with bottom dot (About/Team -> Contacts)
+// CHANGE 8: Added neon glow effect
 export function VerticalLineDivider() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.5 })
 
   return (
     <div ref={ref} className="py-8 flex items-center justify-center">
-      <div className="flex flex-col items-center">
-        {/* Vertical line that grows top to bottom */}
+      <div className="flex flex-col items-center divider-neon-glow">
         <motion.div
           initial={{ height: 0, opacity: 0 }}
           animate={isInView ? { height: 60, opacity: 1 } : {}}
@@ -215,7 +200,6 @@ export function VerticalLineDivider() {
           className="w-px"
           style={{ backgroundColor: '#C8943E' }}
         />
-        {/* Bottom dot that fades in */}
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}

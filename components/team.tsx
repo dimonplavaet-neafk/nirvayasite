@@ -44,7 +44,7 @@ export function Team() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em]">
+          <h2 className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em]">
             Наша команда
           </h2>
         </motion.div>
@@ -68,7 +68,7 @@ export function Team() {
               </div>
 
               {/* Name */}
-              <h3 className="font-heading text-xl text-gold uppercase tracking-wider mb-2">
+              <h3 className="font-heading font-semibold text-xl text-gold uppercase tracking-wider mb-2">
                 {member.name}
               </h3>
 

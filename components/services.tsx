@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+
 
 const services = [
   {
@@ -33,17 +33,8 @@ export function Services() {
 
   return (
     <section id="services" className="py-24 md:py-32 bg-background-secondary relative overflow-hidden">
-      {/* Diamond grid background at 0.02 opacity */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, var(--gold) 1px, transparent 1px),
-            linear-gradient(-45deg, var(--gold) 1px, transparent 1px)
-          `,
-          backgroundSize: '32px 32px'
-        }}
-      />
+      {/* Circuit board background pattern - CHANGE 6 */}
+      <div className="absolute inset-0 circuit-pattern" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <motion.div
@@ -60,7 +51,7 @@ export function Services() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="h-px bg-gold hidden md:block"
             />
-            <h2 className="font-serif font-normal text-3xl md:text-5xl uppercase tracking-[0.15em]">
+            <h2 className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em]">
               Что мы создаём
             </h2>
             <motion.div
@@ -71,7 +62,7 @@ export function Services() {
             />
           </div>
           
-          <p className="font-serif text-foreground-muted text-lg md:text-xl max-w-2xl mx-auto mb-4">
+          <p className="font-heading font-normal text-foreground-muted text-lg md:text-xl max-w-2xl mx-auto mb-4">
             Каждый проект — это кинематографичная история с характером и стилем
           </p>
           
@@ -107,17 +98,18 @@ export function Services() {
                     backgroundClip: 'padding-box, border-box',
                   }}
                 >
+                  {/* Hover rings - CHANGE 7 */}
+                  <div className="hover-ring-1" />
+                  <div className="hover-ring-2" />
+                  
                   {/* Background placeholder */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0A0E1A]/90" />
                   
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-heading text-lg uppercase tracking-wider">
-                        {service.title}
-                      </h3>
-                      <ArrowRight className="w-5 h-5 text-gold transform group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    <h3 className="font-heading font-semibold text-lg uppercase tracking-wider mb-4">
+                      {service.title}
+                    </h3>
                     
                     <p className="text-foreground-muted text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
                       {service.description}

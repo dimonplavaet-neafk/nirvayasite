@@ -46,13 +46,13 @@ export function Footer() {
             ))}
           </motion.nav>
 
-          {/* Tagline */}
+          {/* Tagline - Rajdhani 400 italic */}
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="font-serif italic text-foreground-muted text-sm"
+            className="font-heading font-normal italic text-foreground-muted text-sm"
           >
             От замысла к сиянию
           </motion.p>
