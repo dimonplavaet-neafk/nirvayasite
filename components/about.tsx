@@ -3,25 +3,25 @@
 import { useRef, useEffect, useState } from "react"
 import { motion, useInView } from "framer-motion"
 
-// CHANGE 3: New stats with custom icons
+// Stats with custom icons
 const stats = [
   { 
     number: 50, 
     suffix: "+", 
     label: "проектов",
-    icon: "triangle" // Gold triangle outline like logo
+    icon: "triangle"
   },
   { 
     number: 3, 
     suffix: "", 
-    label: "мастера",
-    icon: "dots" // Three gold dots in a row
+    label: "профессионала у руля",
+    icon: "dots"
   },
   { 
     number: 0, 
     suffix: "", 
     label: "форматов",
-    icon: "infinity", // Gold infinity symbol with pulse
+    icon: "infinity",
     isSymbol: true,
     symbol: "∞"
   },
@@ -29,7 +29,7 @@ const stats = [
     number: 7, 
     suffix: "", 
     label: "дней средний срок",
-    icon: "clock" // Gold circle outline
+    icon: "clock"
   },
 ]
 
@@ -52,13 +52,12 @@ function StatIcon({ type }: { type: string }) {
       )
     case "infinity":
       return (
-        <svg width="24" height="12" viewBox="0 0 24 12" fill="none" className="animate-infinity-pulse">
+        <svg width="28" height="16" viewBox="0 0 24 16" fill="none" className="animate-infinity-pulse">
           <path 
-            d="M6 6C6 3.5 4 1 1.5 1C-1 1 -1 11 1.5 11C4 11 6 8.5 6 6ZM6 6C6 3.5 8 1 10.5 1C13 1 15 3.5 15 6C15 8.5 13 11 10.5 11C8 11 6 8.5 6 6Z" 
+            d="M12 8c-2.2-2.2-5.8-2.2-8 0s-2.2 5.8 0 8 5.8 2.2 8 0c2.2 2.2 5.8 2.2 8 0s2.2-5.8 0-8-5.8-2.2-8 0" 
             stroke="#C8943E" 
             strokeWidth="1.5" 
             fill="none"
-            transform="translate(3, 0)"
           />
         </svg>
       )
@@ -210,14 +209,19 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 pt-16 border-t border-gold/10"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={statsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="text-center flex flex-col items-center"
+                className="text-center flex flex-col items-center rounded-xl p-6 md:p-5 transition-all duration-300 hover:border-gold/25"
+                style={{
+                  border: '1px solid rgba(200,148,62,0.1)',
+                  background: 'rgba(14,18,37,0.5)',
+                  backdropFilter: 'blur(4px)',
+                }}
               >
                 {/* Custom icon */}
                 <div className="mb-4 h-6 flex items-center justify-center">

@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+
 
 const services = [
   {
@@ -107,12 +107,9 @@ export function Services() {
                   
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-heading font-semibold text-lg uppercase tracking-wider">
-                        {service.title}
-                      </h3>
-                      <ArrowRight className="w-5 h-5 text-gold transform group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    <h3 className="font-heading font-semibold text-lg uppercase tracking-wider mb-4">
+                      {service.title}
+                    </h3>
                     
                     <p className="text-foreground-muted text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
                       {service.description}

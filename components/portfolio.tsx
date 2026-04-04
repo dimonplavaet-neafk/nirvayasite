@@ -52,23 +52,59 @@ export function Portfolio() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          {/* Heading with extending lines - centered */}
+          {/* Heading with circuit-style decorations */}
           <div className="flex items-center justify-center gap-4">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 60 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-px bg-gold hidden md:block"
-            />
+            {/* Left circuit decoration */}
+            <div className="hidden md:flex items-center">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={isInView ? { width: 80 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="h-px origin-right"
+                style={{ backgroundColor: 'rgba(200,148,62,0.15)' }}
+              />
+              <motion.div
+                initial={{ height: 0 }}
+                animate={isInView ? { height: 20 } : {}}
+                transition={{ duration: 0.3, delay: 0.8 }}
+                className="w-px origin-top"
+                style={{ backgroundColor: 'rgba(200,148,62,0.15)' }}
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isInView ? { opacity: 0.2, scale: 1 } : {}}
+                transition={{ duration: 0.2, delay: 1.1 }}
+                className="w-[3px] h-[3px] rounded-full bg-gold -ml-[1.5px]"
+              />
+            </div>
+            
             <h2 className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em] text-center">
-              Избранные работы
+              Showreel & Кейсы
             </h2>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 60 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-px bg-gold hidden md:block"
-            />
+            
+            {/* Right circuit decoration - mirrored */}
+            <div className="hidden md:flex items-center flex-row-reverse">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={isInView ? { width: 80 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="h-px origin-left"
+                style={{ backgroundColor: 'rgba(200,148,62,0.15)' }}
+              />
+              <motion.div
+                initial={{ height: 0 }}
+                animate={isInView ? { height: 20 } : {}}
+                transition={{ duration: 0.3, delay: 0.8 }}
+                className="w-px origin-top"
+                style={{ backgroundColor: 'rgba(200,148,62,0.15)' }}
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isInView ? { opacity: 0.2, scale: 1 } : {}}
+                transition={{ duration: 0.2, delay: 1.1 }}
+                className="w-[3px] h-[3px] rounded-full bg-gold -mr-[1.5px]"
+              />
+            </div>
           </div>
         </motion.div>
 

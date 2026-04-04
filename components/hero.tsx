@@ -145,6 +145,17 @@ export function Hero() {
           </a>
         </motion.div>
       </div>
+      
+      {/* Bottom padding spacer */}
+      <div className="h-[140px]" />
+      
+      {/* Gold separator line above marquee */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-px"
+        style={{
+          background: 'linear-gradient(to right, transparent, rgba(200,148,62,0.08), transparent)'
+        }}
+      />
     </section>
   )
 }
