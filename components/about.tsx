@@ -47,11 +47,11 @@ function StatIcon({ type }: { type: string }) {
       )
     case "infinity":
       return (
-        <svg width="28" height="16" viewBox="0 0 24 16" fill="none" className="animate-infinity-pulse">
-          <path 
-            d="M12 8c-2.2-2.2-5.8-2.2-8 0s-2.2 5.8 0 8 5.8 2.2 8 0c2.2 2.2 5.8 2.2 8 0s2.2-5.8 0-8-5.8-2.2-8 0" 
-            stroke="#C8943E" 
-            strokeWidth="1.5" 
+        <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
+          <path
+            d="M8 1C4.134 1 1 4.134 1 7s3.134 6 6 6c2.8 0 4.5-2 7-6 2.5-4 4.2-6 7-6 2.866 0 6 3.134 6 6s-3.134 6-6 6c-2.8 0-4.5-2-7-6C11.5 3 9.8 1 8 1z"
+            stroke="#C8943E"
+            strokeWidth="1.5"
             fill="none"
           />
         </svg>
@@ -65,8 +65,9 @@ function StatIcon({ type }: { type: string }) {
     case "cycle":
       return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2a10 10 0 0 1 10 10h-3l4 4 4-4h-3A12 12 0 0 0 12 0v2z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
-          <path d="M12 22a10 10 0 0 1-10-10h3l-4-4-4 4h3A12 12 0 0 0 12 24v-2z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10" stroke="#C8943E" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          <path d="M22 2v6h-6" stroke="#C8943E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <path d="M22 8l-3.5-3.5" stroke="#C8943E" strokeWidth="1.5" strokeLinecap="round" fill="none" />
         </svg>
       )
     default:

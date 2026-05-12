@@ -200,18 +200,6 @@ export function VerticalLineDivider() {
           className="w-px"
           style={{ backgroundColor: '#C8943E' }}
         />
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.7 }}
-          className="mt-0"
-          style={{ 
-            width: '6px', 
-            height: '6px', 
-            borderRadius: '50%', 
-            backgroundColor: '#C8943E' 
-          }}
-        />
       </div>
     </div>
   )
