@@ -20,17 +20,13 @@ function generateParticles(count: number) {
   return particles
 }
 
-const videos = [
-  "https://nirvaya-cdn.b-cdn.net/Promo%201_WRSAI_result.mp4",
+const playbackIds = [
+  "rR8P8mSaKDzz02TsftugTUdI00cQPJX00oy",
 ]
 
 export function Hero() {
   const particles = useMemo(() => generateParticles(50), [])
   const [current, setCurrent] = useState(0)
-
-  const handleEnded = () => {
-    setCurrent((prev) => (prev + 1) % videos.length)
-  }
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -52,16 +48,11 @@ export function Hero() {
               border: '1px solid rgba(200, 148, 62, 0.15)',
             }}
           >
-            <video
-              key={current}
-              autoPlay
-              muted
-              playsInline
-              onEnded={handleEnded}
-              className="w-full h-full object-cover"
-            >
-              <source src={videos[current]} type="video/mp4" />
-            </video>
+            <iframe
+              src={`https://player.mux.com/${playbackIds[current]}?autoplay=1&muted=1&loop=1&background=1`}
+              style={{ width: '100%', height: '100%', border: 'none' }}
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+            />
           </div>
 
           <div
