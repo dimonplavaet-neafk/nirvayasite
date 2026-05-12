@@ -46,6 +46,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="scroll-smooth">
+      <head>
+        <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player@3/dist/mux-player.min.js" defer />
+      </head>
       <body className={`${rajdhani.variable} ${inter.variable} font-sans antialiased`}>
         {children}
         <ScanlinesOverlay />
