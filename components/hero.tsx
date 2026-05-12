@@ -21,7 +21,7 @@ function generateParticles(count: number) {
 }
 
 const playbackIds = [
-  "rR8P8mSaKDzz02TsftugTUdI00cQPJX00oy",
+  "7H97SoRVUHC2kJ01duXqdmc1gsGaupSh01ijVcOQuSi1k",
 ]
 
 export function Hero() {
