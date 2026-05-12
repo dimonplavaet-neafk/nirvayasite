@@ -1,5 +1,19 @@
 "use client"
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'mux-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        'playback-id'?: string
+        autoplay?: string | boolean
+        loop?: boolean
+        muted?: boolean
+        playsinline?: boolean
+      }
+    }
+  }
+}
+
 import { motion } from "framer-motion"
 import { useMemo, useState } from "react"
 
@@ -48,10 +62,13 @@ export function Hero() {
               border: '1px solid rgba(200, 148, 62, 0.15)',
             }}
           >
-            <iframe
-              src={`https://player.mux.com/${playbackIds[current]}?autoplay=1&muted=1&loop=1&background=1`}
-              style={{ width: '100%', height: '100%', border: 'none' }}
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+            <mux-player
+              playback-id="7H97SoRVUHC2kJ01duXqdmc1gsGaupSh01ijVcOQuSi1k"
+              autoplay="muted"
+              loop
+              muted
+              playsinline
+              style={{ width: '100%', height: '100%', border: 'none', '--controls': 'none' } as React.CSSProperties}
             />
           </div>
 
