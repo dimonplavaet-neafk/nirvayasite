@@ -6,10 +6,6 @@ import { motion, useInView } from "framer-motion"
 
 const services = [
   {
-    title: "Музыкальные клипы",
-    description: "Полноценные AI-клипы с сохранением внешности артиста, motion control и кинематографичным монтажом",
-  },
-  {
     title: "Рекламные ролики",
     description: "Коммерческая реклама для брендов, продуктов и сервисов — дорого, масштабно, эффективно",
   },
@@ -22,8 +18,8 @@ const services = [
     description: "Короткие вертикальные ролики для Instagram, TikTok, YouTube Shorts — цепляющие с первой секунды",
   },
   {
-    title: "Контент для брендов",
-    description: "Имиджевые ролики, презентации продуктов, визуальные истории для digital-маркетинга",
+    title: "Анимационный контент",
+    description: "2D и 3D анимация, моушн-дизайн, визуальные эффекты — оживляем любую идею в движении",
   },
 ]
 
@@ -80,7 +76,7 @@ export function Services() {
 
         {/* Horizontal scrollable cards */}
         <div className="relative">
-          <div className="flex overflow-x-auto gap-6 pb-6 -mx-6 px-6 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-5 md:overflow-visible md:gap-4">
+          <div className="flex overflow-x-auto gap-6 pb-6 -mx-6 px-6 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-4 md:overflow-visible md:gap-4">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}

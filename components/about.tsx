@@ -8,28 +8,30 @@ const stats = [
   { 
     number: 50, 
     suffix: "+", 
-    label: "проектов",
+    label: "проектов реализовано",
     icon: "triangle"
-  },
-  { 
-    number: 3, 
-    suffix: "", 
-    label: "профессионала у руля",
-    icon: "dots"
   },
   { 
     number: 0, 
     suffix: "", 
-    label: "форматов",
+    label: "Без рамок — воплотим любую идею",
     icon: "infinity",
     isSymbol: true,
     symbol: "∞"
   },
   { 
-    number: 7, 
+    number: 0, 
     suffix: "", 
-    label: "дней средний срок",
-    icon: "clock"
+    label: "Не считаем правки — считаем качество",
+    icon: "diamond",
+    isSymbol: true,
+    symbol: "◆"
+  },
+  { 
+    number: 360, 
+    suffix: "°", 
+    label: "Полный цикл — от идеи до экрана",
+    icon: "cycle"
   },
 ]
 
@@ -40,15 +42,8 @@ function StatIcon({ type }: { type: string }) {
       return (
         <svg width="24" height="22" viewBox="0 0 24 22" fill="none">
           <path d="M12 2L22 20H2L12 2Z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+          <circle cx="12" cy="14" r="1.5" fill="#C8943E" />
         </svg>
-      )
-    case "dots":
-      return (
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-        </div>
       )
     case "infinity":
       return (
@@ -61,10 +56,17 @@ function StatIcon({ type }: { type: string }) {
           />
         </svg>
       )
-    case "clock":
+    case "diamond":
       return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="10" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+          <path d="M12 2L22 12L12 22L2 12L12 2Z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+        </svg>
+      )
+    case "cycle":
+      return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2a10 10 0 0 1 10 10h-3l4 4 4-4h-3A12 12 0 0 0 12 0v2z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+          <path d="M12 22a10 10 0 0 1-10-10h3l-4-4-4 4h3A12 12 0 0 0 12 24v-2z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
         </svg>
       )
     default:
