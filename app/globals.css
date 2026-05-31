@@ -555,3 +555,22 @@
 .animate-stat-line {
   animation: stat-line-fade 0.5s ease-out forwards;
 }
+
+/* Styles gradient shimmer text */
+.styles-gradient-text {
+  background: linear-gradient(90deg, #C8943E 0%, #1B6B8A 25%, #C8943E 50%, #1B6B8A 75%, #C8943E 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shimmer 4s linear infinite;
+}
+
+@keyframes gradient-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}

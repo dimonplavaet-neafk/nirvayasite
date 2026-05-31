@@ -20,9 +20,16 @@ export function FaceTransfer() {
           transition={{ duration: 0.6 }}
           className="mb-14"
         >
-          <p className="font-heading font-normal text-gold text-sm tracking-wider mb-4">
-            ТЕХНОЛОГИЯ СОХРАНЕНИЯ ВНЕШНОСТИ
-          </p>
+          <span 
+            className="inline-block font-heading font-normal text-xs tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-4"
+            style={{ 
+              border: "1px solid rgba(200,148,62,0.3)", 
+              background: "rgba(200,148,62,0.05)", 
+              color: "rgba(200,148,62,0.8)" 
+            }}
+          >
+            Технология сохранения внешности
+          </span>
           <h2 className="font-heading font-semibold text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.12em] leading-tight mb-6">
             Ваше лицо — в любой вселенной
           </h2>
