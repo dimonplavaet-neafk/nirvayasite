@@ -3,8 +3,9 @@ import { Hero } from "@/components/hero"
 import { Marquee } from "@/components/marquee"
 import { Services } from "@/components/services"
 import { Portfolio } from "@/components/portfolio"
+import { FaceTransfer } from "@/components/face-transfer"
+import { MotionControl } from "@/components/motion-control"
 import { About } from "@/components/about"
-import { Team } from "@/components/team"
 import { Contacts } from "@/components/contacts"
 import { Footer } from "@/components/footer"
 import { CursorGlow } from "@/components/cursor-glow"
@@ -27,9 +28,11 @@ export default function Home() {
       <LotusDivider />
       <Portfolio />
       <MandalaDivider />
-      <About />
+      <FaceTransfer />
       <VerticalLineDivider />
-      <Team />
+      <MotionControl />
+      <VerticalLineDivider />
+      <About />
       <VerticalLineDivider />
       <Contacts />
       <Footer />

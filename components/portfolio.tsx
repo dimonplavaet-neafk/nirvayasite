@@ -22,35 +22,19 @@ const mainProjects = [
 const styles = [
   {
     title: "Аниме",
-    description: "Японская стилистика, динамика, выразительные персонажи",
-  },
-  {
-    title: "Палех",
-    description: "Русская лаковая миниатюра, фольклорные мотивы, золото на чёрном",
-  },
-  {
-    title: "Витраж",
-    description: "Ожившие стеклянные мозаики, свет и цвет в каждом кадре",
+    description: "Дух японской анимации в новом прочтении",
   },
   {
     title: "Пластилин",
-    description: "Claymation-эстетика, тёплая тактильная анимация",
+    description: "Тактильный мир, оживший на экране",
   },
   {
-    title: "Оригами",
-    description: "Бумажный мир, объёмные фигуры, минималистичная красота",
+    title: "Pixar",
+    description: "Мировой стандарт анимации — без студии в Калифорнии",
   },
   {
-    title: "Акварель",
-    description: "Мягкие текстуры, плавные переходы, живописная картинка",
-  },
-  {
-    title: "2D анимация",
-    description: "Классическая рисованная анимация, плавное движение, чистые линии",
-  },
-  {
-    title: "Pixar-стиль",
-    description: "3D мультипликация, эмоциональные персонажи, тёплые цвета",
+    title: "Палех",
+    description: "Вековые традиции в цифровом формате",
   },
 ]
 
@@ -148,8 +132,8 @@ export function Portfolio() {
           <p className="font-heading font-normal text-foreground-muted text-lg">Мы работаем в любом визуальном стиле</p>
         </motion.div>
 
-        {/* Сетка стилей 4 колонки x 2 ряда */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* Сетка стилей 2x2 */}
+        <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto">
           {styles.map((style, index) => (
             <motion.div
               key={style.title}
@@ -169,9 +153,9 @@ export function Portfolio() {
                   Превью
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E1A] via-[#0A0E1A]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-gold mb-1">{style.title}</h4>
-                  <p className="text-foreground-muted text-xs leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">{style.description}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h4 className="font-heading font-semibold text-base md:text-lg uppercase tracking-wider text-gold mb-2">{style.title}</h4>
+                  <p className="text-foreground-muted text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">{style.description}</p>
                 </div>
                 <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
