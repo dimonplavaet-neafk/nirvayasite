@@ -21,17 +21,19 @@ export function FaceTransfer() {
           className="mb-14"
         >
           <span 
-            className="inline-block font-heading font-normal text-xs tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-4"
+            className="inline-block font-heading font-normal text-xs tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-4 animate-pulse"
             style={{ 
               border: "1px solid rgba(200,148,62,0.3)", 
               background: "rgba(200,148,62,0.05)", 
-              color: "rgba(200,148,62,0.8)" 
+              color: "rgba(200,148,62,0.8)",
+              boxShadow: "0 0 20px rgba(200,148,62,0.1)",
+              animationDuration: "3s"
             }}
           >
             Технология сохранения внешности
           </span>
           <h2 className="font-heading font-semibold text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.12em] leading-tight mb-6">
-            Ваше лицо — в любой вселенной
+            Тот же человек. Другая реальность.
           </h2>
           <p className="text-foreground/80 text-lg md:text-xl max-w-3xl leading-relaxed">
             Мы сохраняем внешность реального человека в AI-видео с точностью до мельчайших черт. 
