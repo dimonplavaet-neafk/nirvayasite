@@ -128,6 +128,25 @@ export function Portfolio() {
               Каждый стиль — это отдельная вселенная. Выбирайте эстетику, а мы воплотим.
             </p>
           </motion.div>
+          
+          {/* Glass pill subtitle */}
+          <div className="flex justify-center mt-5 mb-10">
+            <div 
+              className="px-5 py-2.5 rounded-full" 
+              style={{ 
+                background: "rgba(14,18,37,0.7)", 
+                border: "1px solid rgba(200,148,62,0.12)", 
+                backdropFilter: "blur(10px)" 
+              }}
+            >
+              <p 
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: "italic" }} 
+                className="text-foreground/60 text-sm md:text-base"
+              >
+                4 примера из бесконечности вариантов
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Сетка стилей */}
@@ -160,16 +179,6 @@ export function Portfolio() {
             </motion.div>
           ))}
         </div>
-        
-        {/* Subtitle under styles */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={stylesInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center mt-8 text-foreground-muted text-sm italic"
-        >
-          4 примера из бесконечности вариантов
-        </motion.p>
       </div>
     </section>
   )
