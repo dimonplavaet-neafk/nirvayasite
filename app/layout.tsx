@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Rajdhani, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import './globals.css'
 import { ScanlinesOverlay } from '@/components/scanlines-overlay'
 
@@ -46,10 +47,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="scroll-smooth">
-      <head>
-        <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player@3/dist/mux-player.min.js" defer />
-      </head>
       <body className={`${rajdhani.variable} ${inter.variable} font-sans antialiased`}>
+        <Script 
+          src="https://cdn.jsdelivr.net/npm/@mux/mux-player@3/dist/mux-player.min.js" 
+          strategy="beforeInteractive"
+        />
         {children}
         <ScanlinesOverlay />
         <Analytics />
