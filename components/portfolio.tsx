@@ -107,7 +107,7 @@ export function Portfolio() {
                 <div className="absolute inset-0 bg-teal/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-6 text-center">
                   <p className="text-foreground font-medium mb-4 max-w-xs">{project.description}</p>
                   <button className="inline-flex items-center gap-2 text-foreground font-medium text-sm tracking-wide hover:gap-3 transition-all border border-foreground/50 px-4 py-2 rounded-sm">
-                    Смотреть <ArrowUpRight className="w-4 h-4" />
+                    Смотреть
                   </button>
                 </div>
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-0 group-hover:opacity-100">
