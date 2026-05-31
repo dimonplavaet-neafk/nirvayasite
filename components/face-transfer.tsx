@@ -32,9 +32,20 @@ export function FaceTransfer() {
           >
             Технология сохранения внешности
           </span>
-          <h2 className="font-heading font-semibold text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.12em] leading-tight mb-6">
-            Тот же человек. Другая реальность.
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2 
+              className="font-heading font-semibold text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.12em] leading-tight mb-6"
+              style={{
+                textShadow: "0 0 30px rgba(200,148,62,0.3), 0 0 60px rgba(200,148,62,0.15), 0 0 90px rgba(200,148,62,0.05)"
+              }}
+            >
+              Внешность под контролем
+            </h2>
+          </motion.div>
           <p className="text-foreground/80 text-lg md:text-xl max-w-3xl leading-relaxed">
             Мы сохраняем внешность реального человека в AI-видео с точностью до мельчайших черт. 
             Технология, которая переносит вас в любой сценарий — без грима, без дублёров, без съёмок.

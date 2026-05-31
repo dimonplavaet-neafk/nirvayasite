@@ -97,15 +97,18 @@ export function Portfolio() {
                   <rect x="0" y="0" width="100%" height="100%" fill="none" stroke="var(--gold)" strokeWidth="2" className="portfolio-border-animation" style={{ strokeDasharray: "1000", strokeDashoffset: "1000" }} />
                 </svg>
               </div>
-              <div 
-                className="mt-4 inline-flex items-center gap-3 px-5 py-2.5 rounded-full" 
-                style={{ 
-                  border: "1px solid rgba(200,148,62,0.25)", 
-                  background: "rgba(14,18,37,0.7)", 
-                  backdropFilter: "blur(8px)" 
-                }}
-              >
-                <h3 className="font-heading font-semibold text-base md:text-lg uppercase tracking-wider text-gold">{project.title}</h3>
+              <div className="mt-4 flex justify-center">
+                <div 
+                  className="px-6 py-3 rounded-lg text-center transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(200,148,62,0.15)]" 
+                  style={{ 
+                    background: "rgba(14,18,37,0.7)", 
+                    border: "1px solid rgba(200,148,62,0.15)", 
+                    backdropFilter: "blur(12px)",
+                    boxShadow: "0 0 20px rgba(27,107,138,0.08)"
+                  }}
+                >
+                  <h3 className="font-heading font-semibold text-lg md:text-xl uppercase tracking-[0.15em] text-gold">{project.title}</h3>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -125,6 +128,25 @@ export function Portfolio() {
               Каждый стиль — это отдельная вселенная. Выбирайте эстетику, а мы воплотим.
             </p>
           </motion.div>
+          
+          {/* Glass pill subtitle */}
+          <div className="flex justify-center mt-5 mb-10">
+            <div 
+              className="px-5 py-2.5 rounded-full" 
+              style={{ 
+                background: "rgba(14,18,37,0.7)", 
+                border: "1px solid rgba(200,148,62,0.12)", 
+                backdropFilter: "blur(10px)" 
+              }}
+            >
+              <p 
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontStyle: "italic" }} 
+                className="text-foreground/60 text-sm md:text-base"
+              >
+                4 примера из бесконечности вариантов
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Сетка стилей */}
