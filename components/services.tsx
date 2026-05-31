@@ -39,23 +39,26 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          {/* Heading with extending lines */}
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 80 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-px bg-gold hidden md:block"
-            />
-            <h2 className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em]">
-              Что мы создаём
-            </h2>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: 80 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-px bg-gold hidden md:block"
-            />
+          {/* Heading with blur fade-in and text-stroke */}
+          <div className="mb-6">
+            <motion.h2
+              initial={{ opacity: 0, filter: "blur(20px)" }}
+              animate={isInView ? { opacity: 1, filter: "blur(0px)" } : {}}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em] transition-all duration-500 hover:text-gold group"
+              style={{
+                WebkitTextStroke: "1px rgba(200,148,62,0.4)",
+                WebkitTextFillColor: "transparent",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.WebkitTextFillColor = "#C8943E"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.WebkitTextFillColor = "transparent"
+              }}
+            >
+              ВИЗУАЛЬНЫЙ ПРОДАКШН
+            </motion.h2>
           </div>
           
           <p className="font-heading font-normal text-foreground-muted text-lg md:text-xl max-w-2xl mx-auto mb-4">
