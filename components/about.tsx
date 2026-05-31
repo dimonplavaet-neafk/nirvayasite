@@ -15,9 +15,9 @@ const stats = [
     number: 0, 
     suffix: "", 
     label: "Без рамок — воплотим любую идею",
-    icon: "infinity",
+    icon: "empty",
     isSymbol: true,
-    symbol: "∞"
+    symbol: "∅"
   },
   { 
     number: 0, 
@@ -46,16 +46,9 @@ function StatIcon({ type }: { type: string }) {
         </svg>
       )
     case "infinity":
-      return (
-        <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
-          <path
-            d="M8 1C4.134 1 1 4.134 1 7s3.134 6 6 6c2.8 0 4.5-2 7-6 2.5-4 4.2-6 7-6 2.866 0 6 3.134 6 6s-3.134 6-6 6c-2.8 0-4.5-2-7-6C11.5 3 9.8 1 8 1z"
-            stroke="#C8943E"
-            strokeWidth="1.5"
-            fill="none"
-          />
-        </svg>
-      )
+      return <span className="text-gold text-base" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>∅</span>
+    case "empty":
+      return <span className="text-gold text-base" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>∅</span>
     case "diamond":
       return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -234,7 +227,7 @@ export function About() {
                 {/* Number or symbol */}
                 <div className="font-heading font-semibold text-3xl md:text-4xl text-gold mb-2">
                   {stat.isSymbol ? (
-                    <span className="text-4xl md:text-5xl">{stat.symbol}</span>
+                    <span className="text-4xl md:text-5xl leading-none text-gold" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 200 }}>{stat.symbol}</span>
                   ) : (
                     <AnimatedNumber value={stat.number} suffix={stat.suffix} isInView={statsInView} />
                   )}

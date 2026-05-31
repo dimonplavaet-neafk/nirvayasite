@@ -5,14 +5,12 @@ import { motion, useInView } from "framer-motion"
 
 const mainProjects = [
   {
-    title: "Клипы",
-    tag: "Музыкальные видео",
+    title: "Музыкальные клипы",
     description: "Музыкальные клипы, сторителлинг, визуальные истории",
     number: "01",
   },
   {
     title: "Рекламные ролики",
-    tag: "Коммерция",
     description: "Рекламные кампании, промо, презентации продуктов",
     number: "02",
   },
@@ -54,38 +52,23 @@ export function Portfolio() {
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         {/* Заголовок */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <div className="flex items-center justify-center gap-4">
-            <div className="hidden md:flex items-center">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={isInView ? { width: 80 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="h-px origin-right"
-                style={{ backgroundColor: "rgba(200,148,62,0.15)" }}
-              />
-            </div>
-
-            <h2 className="font-heading font-semibold text-3xl md:text-5xl uppercase tracking-[0.12em] text-center">
-              Наши работы
-            </h2>
-
-            <div className="hidden md:flex items-center flex-row-reverse">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={isInView ? { width: 80 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="h-px origin-left"
-                style={{ backgroundColor: "rgba(200,148,62,0.15)" }}
-              />
-            </div>
-          </div>
-        </motion.div>
+        <div className="mb-16 text-center">
+          <motion.h2
+            initial={{ opacity: 0, filter: "blur(20px)" }}
+            animate={isInView ? { opacity: 1, filter: "blur(0px)" } : {}}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="font-heading font-semibold text-4xl md:text-6xl uppercase tracking-[0.2em]"
+          >
+            DEMO REEL
+          </motion.h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="w-[80px] h-px mx-auto mt-4"
+            style={{ background: "linear-gradient(to right, transparent, #C8943E, transparent)" }}
+          />
+        </div>
 
         {/* Два основных проекта 16:9 */}
         <div className="grid md:grid-cols-2 gap-6 mb-16">
@@ -114,8 +97,15 @@ export function Portfolio() {
                   <rect x="0" y="0" width="100%" height="100%" fill="none" stroke="var(--gold)" strokeWidth="2" className="portfolio-border-animation" style={{ strokeDasharray: "1000", strokeDashoffset: "1000" }} />
                 </svg>
               </div>
-              <div className="mt-4">
-                <h3 className="font-heading font-semibold text-lg uppercase tracking-wider group-hover:text-gold transition-colors">{project.title}</h3>
+              <div 
+                className="mt-4 inline-flex items-center gap-3 px-5 py-2.5 rounded-full" 
+                style={{ 
+                  border: "1px solid rgba(200,148,62,0.25)", 
+                  background: "rgba(14,18,37,0.7)", 
+                  backdropFilter: "blur(8px)" 
+                }}
+              >
+                <h3 className="font-heading font-semibold text-base md:text-lg uppercase tracking-wider text-gold">{project.title}</h3>
               </div>
             </motion.div>
           ))}
@@ -137,8 +127,8 @@ export function Portfolio() {
           </motion.div>
         </div>
 
-        {/* Сетка стилей 2x2 */}
-        <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto">
+        {/* Сетка стилей */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
           {styles.map((style, index) => (
             <motion.div
               key={style.title}
@@ -148,7 +138,7 @@ export function Portfolio() {
               className="group cursor-pointer"
             >
               <div
-                className="relative aspect-square rounded-sm overflow-hidden transition-all duration-500"
+                className="relative aspect-video rounded-sm overflow-hidden transition-all duration-500"
                 style={{
                   border: "1px solid rgba(200,148,62,0.15)",
                   background: "rgba(14,18,37,0.6)",
