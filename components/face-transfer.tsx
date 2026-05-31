@@ -13,30 +13,66 @@ export function FaceTransfer() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-teal/5 blur-[100px]" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
-        >
-          <p className="font-heading font-normal text-gold text-sm tracking-wider mb-4">
+        {/* Header with split-reveal */}
+        <div className="mb-14">
+          <motion.p
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="font-heading font-normal text-gold text-sm tracking-wider mb-4"
+          >
             ТЕХНОЛОГИЯ СОХРАНЕНИЯ ВНЕШНОСТИ
-          </p>
-          <h2 className="font-heading font-semibold text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.12em] leading-tight mb-6">
-            Ваше лицо — в любой вселенной
-          </h2>
-          <p className="text-foreground/80 text-lg md:text-xl max-w-3xl leading-relaxed">
-            Мы сохраняем внешность реального человека в AI-видео с точностью до мельчайших черт. 
+          </motion.p>
+
+          {/* Split reveal heading */}
+          <div className="overflow-hidden mb-6">
+            <motion.h2
+              initial={{ y: "100%" }}
+              animate={isInView ? { y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
+              className="font-heading font-semibold text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.12em] leading-tight"
+            >
+              Ваше лицо —
+            </motion.h2>
+          </div>
+          <div className="overflow-hidden mb-6">
+            <motion.h2
+              initial={{ y: "100%" }}
+              animate={isInView ? { y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.35, ease: [0.33, 1, 0.68, 1] }}
+              className="font-heading font-semibold text-3xl md:text-4xl lg:text-5xl uppercase tracking-[0.12em] leading-tight"
+            >
+              в любой вселенной
+            </motion.h2>
+          </div>
+
+          {/* Animated underline */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="origin-left w-[100px] h-px mb-6"
+            style={{
+              background: "linear-gradient(to right, #C8943E, transparent)",
+            }}
+          />
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-foreground/80 text-lg md:text-xl max-w-3xl leading-relaxed"
+          >
+            Мы сохраняем внешность реального человека в AI-видео с точностью до мельчайших черт.
             Технология, которая переносит вас в любой сценарий — без грима, без дублёров, без съёмок.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         {/* Row 1: Video 16:9 + Photo 1:1 */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center mb-6"
         >
           {/* Video placeholder 16:9 */}
@@ -75,7 +111,7 @@ export function FaceTransfer() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.35 }}
+          transition={{ duration: 0.6, delay: 0.75 }}
           className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-center"
         >
           {/* Video placeholder 16:9 */}

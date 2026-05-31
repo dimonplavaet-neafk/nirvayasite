@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react"
 import { motion, useInView } from "framer-motion"
 
-// Stats with custom icons
 const stats = [
   { 
     number: 50, 
@@ -35,7 +34,6 @@ const stats = [
   },
 ]
 
-// Custom SVG icons for stats
 function StatIcon({ type }: { type: string }) {
   switch (type) {
     case "triangle":
@@ -49,7 +47,7 @@ function StatIcon({ type }: { type: string }) {
       return (
         <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
           <path
-            d="M8 1C4.134 1 1 4.134 1 7s3.134 6 6 6c2.8 0 4.5-2 7-6 2.5-4 4.2-6 7-6 2.866 0 6 3.134 6 6s-3.134 6-6 6c-2.8 0-4.5-2-7-6C11.5 3 9.8 1 8 1z"
+            d="M8 7C8 4.24 5.76 2 3 2S0 4.24 0 7s2.24 5 5 5c1.9 0 3.55-1.06 4.4-2.62C10.45 11.06 12.3 12 14 12c2.76 0 5-2.24 5-5s-2.24-5-5-5c-1.7 0-3.55.94-4.6 2.62C9.55 3.06 7.9 2 6 2"
             stroke="#C8943E"
             strokeWidth="1.5"
             fill="none"
@@ -118,6 +116,21 @@ function AnimatedNumber({ value, suffix, isInView }: { value: number; suffix: st
   )
 }
 
+// Clean infinity SVG component
+function InfinitySymbol() {
+  return (
+    <svg width="52" height="26" viewBox="0 0 52 26" fill="none" className="inline-block">
+      <path
+        d="M14 13C14 9.134 10.866 6 7 6s-7 3.134-7 7 3.134 7 7 7c2.946 0 5.49-1.82 6.527-4.394C14.564 18.18 17.108 20 20.054 20c3.866 0 7-3.134 7-7s-3.134-7-7-7c-2.946 0-5.49 1.82-6.527 4.394"
+        stroke="#C8943E"
+        strokeWidth="2"
+        fill="none"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
 export function About() {
   const ref = useRef(null)
   const statsRef = useRef(null)
@@ -125,19 +138,17 @@ export function About() {
   const statsInView = useInView(statsRef, { once: true, amount: 0.5 })
   const [showLines, setShowLines] = useState(false)
 
-  // Show stat lines after count-up animation completes
   useEffect(() => {
     if (statsInView) {
       const timer = setTimeout(() => {
         setShowLines(true)
-      }, 2200) // After 2s count-up + 200ms buffer
+      }, 2200)
       return () => clearTimeout(timer)
     }
   }, [statsInView])
 
   return (
     <section id="about" className="py-24 md:py-32 bg-background-secondary relative overflow-hidden">
-      {/* Circuit board background pattern - CHANGE 6 */}
       <div className="absolute inset-0 circuit-pattern" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
@@ -197,14 +208,13 @@ export function About() {
               <div className="absolute inset-0 flex items-center justify-center text-foreground-muted text-sm">
                 Стилизованное изображение
               </div>
-              {/* Teal glow effects */}
               <div className="absolute -inset-4 bg-gradient-to-r from-gold/20 via-transparent to-teal/20 blur-3xl opacity-30" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0E1A] via-transparent to-transparent" />
             </div>
           </motion.div>
         </div>
 
-        {/* Stats - CHANGE 3 */}
+        {/* Stats */}
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 40 }}
@@ -226,26 +236,26 @@ export function About() {
                   backdropFilter: 'blur(4px)',
                 }}
               >
-                {/* Custom icon */}
                 <div className="mb-4 h-6 flex items-center justify-center">
                   <StatIcon type={stat.icon} />
                 </div>
                 
-                {/* Number or symbol */}
                 <div className="font-heading font-semibold text-3xl md:text-4xl text-gold mb-2">
                   {stat.isSymbol ? (
-                    <span className="text-4xl md:text-5xl">{stat.symbol}</span>
+                    stat.symbol === "∞" ? (
+                      <InfinitySymbol />
+                    ) : (
+                      <span className="text-4xl md:text-5xl">{stat.symbol}</span>
+                    )
                   ) : (
                     <AnimatedNumber value={stat.number} suffix={stat.suffix} isInView={statsInView} />
                   )}
                 </div>
                 
-                {/* Thin gold line below number */}
                 <div 
                   className={`h-px bg-gold mb-3 transition-all duration-500 ${showLines ? 'w-10 opacity-100' : 'w-0 opacity-0'}`}
                 />
                 
-                {/* Label */}
                 <p className="text-foreground-muted text-sm">{stat.label}</p>
               </motion.div>
             ))}
