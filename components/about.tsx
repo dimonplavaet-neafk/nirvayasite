@@ -8,28 +8,30 @@ const stats = [
   { 
     number: 50, 
     suffix: "+", 
-    label: "проектов",
+    label: "проектов реализовано",
     icon: "triangle"
-  },
-  { 
-    number: 3, 
-    suffix: "", 
-    label: "профессионала у руля",
-    icon: "dots"
   },
   { 
     number: 0, 
     suffix: "", 
-    label: "форматов",
+    label: "Без рамок — воплотим любую идею",
     icon: "infinity",
     isSymbol: true,
     symbol: "∞"
   },
   { 
-    number: 7, 
+    number: 0, 
     suffix: "", 
-    label: "дней средний срок",
-    icon: "clock"
+    label: "Не считаем правки — считаем качество",
+    icon: "diamond",
+    isSymbol: true,
+    symbol: "◆"
+  },
+  { 
+    number: 360, 
+    suffix: "°", 
+    label: "Полный цикл — от идеи до экрана",
+    icon: "cycle"
   },
 ]
 
@@ -40,31 +42,32 @@ function StatIcon({ type }: { type: string }) {
       return (
         <svg width="24" height="22" viewBox="0 0 24 22" fill="none">
           <path d="M12 2L22 20H2L12 2Z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+          <circle cx="12" cy="14" r="1.5" fill="#C8943E" />
         </svg>
-      )
-    case "dots":
-      return (
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-        </div>
       )
     case "infinity":
       return (
-        <svg width="28" height="16" viewBox="0 0 24 16" fill="none" className="animate-infinity-pulse">
-          <path 
-            d="M12 8c-2.2-2.2-5.8-2.2-8 0s-2.2 5.8 0 8 5.8 2.2 8 0c2.2 2.2 5.8 2.2 8 0s2.2-5.8 0-8-5.8-2.2-8 0" 
-            stroke="#C8943E" 
-            strokeWidth="1.5" 
+        <svg width="28" height="14" viewBox="0 0 28 14" fill="none">
+          <path
+            d="M8 1C4.134 1 1 4.134 1 7s3.134 6 6 6c2.8 0 4.5-2 7-6 2.5-4 4.2-6 7-6 2.866 0 6 3.134 6 6s-3.134 6-6 6c-2.8 0-4.5-2-7-6C11.5 3 9.8 1 8 1z"
+            stroke="#C8943E"
+            strokeWidth="1.5"
             fill="none"
           />
         </svg>
       )
-    case "clock":
+    case "diamond":
       return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="10" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+          <path d="M12 2L22 12L12 22L2 12L12 2Z" stroke="#C8943E" strokeWidth="1.5" fill="none" />
+        </svg>
+      )
+    case "cycle":
+      return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10" stroke="#C8943E" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          <path d="M22 2v6h-6" stroke="#C8943E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          <path d="M22 8l-3.5-3.5" stroke="#C8943E" strokeWidth="1.5" strokeLinecap="round" fill="none" />
         </svg>
       )
     default:

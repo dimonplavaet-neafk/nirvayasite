@@ -200,13 +200,6 @@ export function VerticalLineDivider() {
           className="w-px"
           style={{ backgroundColor: '#C8943E' }}
         />
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.4, delay: 0.7 }}
-          className="w-1 h-1 rounded-full mt-0"
-          style={{ backgroundColor: '#C8943E' }}
-        />
       </div>
     </div>
   )
@@ -231,7 +224,7 @@ export function TriangleIcon({ className = "" }: { className?: string }) {
       />
       <circle
         cx="10"
-        cy="11"
+        cy="12"
         r="2"
         fill="currentColor"
       />
